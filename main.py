@@ -5,9 +5,10 @@ import sys
 
 # Search for the part we want to get via regex
 reg=r"\d+[MiB]+....\d+[MiB]+"
-
+required_gpu=1000
 
 check_time_period=60
+
 
 
 while True:
@@ -25,6 +26,12 @@ while True:
 	perc_free=100*(1-(int(stats[0])/int(stats[1])))
 
 	perc_free=str(round(perc_free,2))
+
+	if int(stats[1])<required_gpu:
+		print("The desired GPU is exceeding the total capacity of this server !!")
+		sp.call(['notify-send',"Error !","The desired GPU is exceeding the total capacity of this server !!"])
+		sys.exit(1)
+
 
 	if gpu_free>1000:
 		sp.call(['notify-send',perc_free+" %",matches[0]])
