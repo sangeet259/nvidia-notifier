@@ -1,5 +1,9 @@
 # nvidia-notifier
 
+
+### Result
+![image of a working demo](./images/result.png "image of a working demo")
+
 ### Intro
 
 Tried training your network on the remote server, but there is not enough memory ?
