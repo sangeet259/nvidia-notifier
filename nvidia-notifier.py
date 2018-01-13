@@ -16,7 +16,7 @@ while True:
 	# get nvidia-smi output
 	# on remote server
 	# result=sp.getoutput("nvidia-smi")
-	result=sp.getoutput("ssh 14CS30025@10.5.18.109 'nvidia-smi'")
+	result=sp.getoutput("ssh remote_username@remote_host 'nvidia-smi'")
 
 	matches = re.findall(reg, result)
 	
