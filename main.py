@@ -5,8 +5,8 @@ import sys
 
 # Search for the part we want to get via regex
 reg=r"\d+[MiB]+....\d+[MiB]+"
-required_gpu=1000
 
+required_gpu=1000
 check_time_period=60
 
 
