@@ -5,19 +5,22 @@ import sys
 
 # Search for the part we want to get via regex
 reg=r"\d+[MiB]+....\d+[MiB]+"
+reg2=r"\d+"
 
-required_gpu=1000
-check_time_period=60
+required_gpu=10 # in MB
+check_time_period=30 #seconds
 
 
 
 while True:
 	# get nvidia-smi output
-	result=sp.getoutput("nvidia-smi")
+	# on remote server
+	# result=sp.getoutput("nvidia-smi")
+	result=sp.getoutput("ssh 14CS30025@10.5.18.109 'nvidia-smi'")
 
 	matches = re.findall(reg, result)
 	
-	reg2=r"\d+"
+	
 
 
 	stats=re.findall(reg2,matches[0])
@@ -33,7 +36,7 @@ while True:
 		sys.exit(1)
 
 
-	if gpu_free>1000:
+	if gpu_free>required_gpu:
 		sp.call(['notify-send',perc_free+" %",matches[0]])
 		sys.exit(0)
 
