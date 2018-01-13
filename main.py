@@ -15,5 +15,17 @@ while True:
 	result=sp.getoutput("nvidia-smi")
 
 	matches = re.findall(reg, result)
-	sp.call(['notify-send','GPU-Usage-Status',matches[0]])
+	
+	reg2=r"\d+"
+
+
+	stats=re.findall(reg2,matches[0])
+	perc_free=100*(1-(int(stats[0])/int(stats[1])))
+
+	perc_free=str(round(perc_free,2))
+	
+	sp.call(['notify-send',perc_free+" %",matches[0]])
+
+
+	# make the loop run once every time period
 	time.sleep(check_time_period)
